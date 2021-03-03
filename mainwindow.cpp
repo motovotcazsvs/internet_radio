@@ -15,9 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mPlayer->setMedia(QUrl("https://air2.radiorecord.ru:9003/rr_320"));
     mPlayer->setVolume(50);
     mPlayer->play();
-    QString albumTitle = mPlayer->metaData(QMediaMetaData::AlbumTitle).toString();
-    qDebug() << mPlayer->metaData(QMediaMetaData::Title);
-    qDebug() << albumTitle;
+
 }
 
 MainWindow::~MainWindow()
@@ -28,16 +26,14 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     qDebug() << "state changed" << mPlayer->mediaStatus();
+    if(QMediaPlayer::PlayingState == mPlayer->state()) qDebug() << "state playing";
+    qDebug() << mPlayer->state();
 }
 
 void MainWindow::on_pushButton_3_clicked()
 {
     mPlayer->play();
-    qDebug() << mPlayer->metaData(QMediaMetaData::Title);
-    if(mPlayer->isMetaDataAvailable()){
-        qDebug() << "ura";
-    }
-    else qDebug() << "no metadata";
+
 }
 
 void MainWindow::on_pushButton_2_clicked()
